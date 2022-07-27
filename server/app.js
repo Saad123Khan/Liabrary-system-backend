@@ -17,7 +17,35 @@ const result = await client.query("select * from Users=$1");
     await client.connect();
 
     const firstname = "",lastname="" ,bookname="",bookauthor="",dateofborrow="",dateofreturn="" ;
-const result = await client.query("insert into table (firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn) values($1 , $2) RETURNING",[firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn]);
+const result = await client.query("insert into Books (firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn) values($1 , $2) RETURNING",[firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn]);
+
+        console.log(result.rows);
+        console.log(result.rowCount);
+        
+    client.end();
+
+})();
+(async()=>
+{
+
+    await client.connect();
+
+    const firstname = "",lastname="" ,bookname="",bookauthor="",dateofborrow="",dateofreturn="" ;
+const result = await client.query("Delete from Users where [id] = [1] RETURNING",[firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn]);
+
+        console.log(result.rows);
+        console.log(result.rowCount);
+        
+    client.end();
+
+})();
+(async()=>
+{
+
+    await client.connect();
+
+    const firstname = "",lastname="" ,bookname="",bookauthor="",dateofborrow="",dateofreturn="" ;
+const result = await client.query("Update Books set (firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn) values($1 , $2) RETURNING",[firstname,lastname,bookname,bookauthor,dateofborrow,dateofreturn]);
 
         console.log(result.rows);
         console.log(result.rowCount);
@@ -32,7 +60,7 @@ const result = await client.query("insert into table (firstname,lastname,booknam
     await client.connect();
     const firstname = ""
     const lastname = ""
-const result = await client.query("insert into Books (firstname,lastname) values($1 , $2) RETURNING",[firstname,lastname]);
+const result = await client.query("insert into Users (firstname,lastname) values($1 , $2) RETURNING",[firstname,lastname]);
 
         console.log(result.rows);
         console.log(result.rowCount);

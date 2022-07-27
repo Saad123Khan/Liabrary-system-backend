@@ -1,3 +1,4 @@
+const client = require('./app');
 import {v4 as uuid} from "uuid";
 let users = [];
 export const getUsers=(req,res)=>{
@@ -7,18 +8,21 @@ export const createUsers = (req,res)=>
 {
     const users = req.body;
     users.push({...users,id:uuid()});
+    client(createUsers);
     res.send("User Added Sucessfully");
 };
 export const getUser = (req , res)=>
 {
     const singleUser = users.filter((user) => user.id === req.params.id);
     res.send(singleUser);
+    client(getUser);
 
 };
 
 export const deleteUser = (req , res)=>
 {
     users = users.filter((user) => user.id !== req.params.id);
+    client(deleteUser);
     res.send("User Deleted Sucessfully");
 
 };
@@ -33,7 +37,7 @@ export const updateUser = (req , res)=>
     user.dateofborrow = req.body.dateofborrow;
     user.dateofreturn = req.body.dateofreturn;
     
-
+    client(updateUser);
     res.send("User Updated Sucessfully");
 
 };
